@@ -3,11 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const button = document.getElementById("button");
     const chatMessages = document.getElementById("chat-messages");
     const nameInput = document.getElementById('nameInput');
-    
+    const h1Title = document.getElementById("nameofperson");
 
-    // Helper function to send the prompt (used by both button and enter)
     async function sendPrompt() {
-
+        if (h1Title) {
+            h1Title.remove();
+        } else {
+            console.log("Element already Removed!!!")
+        }
         const loadingBotMessage = document.createElement("div"); // Do not create this outside sendPrompt();
         const userMsg = document.createElement("div");  // Creating inside ensures new elements are created each time instead of reusing and resetting the same ones.
 
@@ -36,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </div>
         `;
-        
+
         chatMessages.append(userMsg);
         chatMessages.append(loadingBotMessage);
         // console.log(chatMessages.innerText);
