@@ -1,0 +1,193 @@
+/* === Futuristic AI App with Vibrant Neon (Enhanced Colors) === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --bg1: #0a0f2c;         /* Deeper blue for more contrast */
+  --bg2: #1a0a2d;         /* Richer purple for depth */
+  --glass: rgba(30,40,60,0.10); /* Slightly more visible glass */
+  --text: #f4faff;        /* Brighter white-blue for clarity */
+  --muted: #8fa1c7;       /* Softer, cooler muted text */
+  --primary: #a259ff;     /* More vibrant neon violet */
+  --accent: #00ffe7;      /* Brighter cyan glow */
+  --radius: 20px;
+  --shadow: 0 8px 40px rgba(0,0,32,0.75); /* Deeper shadow */
+  --glow-primary: 0 0 24px 4px rgba(162,89,255,0.75);
+  --glow-accent: 0 0 24px 4px rgba(0,255,231,0.55);
+}
+
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* Animated Gradient Background */
+body {
+  background: linear-gradient(135deg, var(--bg1), var(--bg2), #2a0a4d 90%);
+  background-size: 400% 400%;
+  animation: bgMove 18s ease infinite;
+  display: grid;
+  place-items: center;
+  padding: 30px;
+}
+@keyframes bgMove {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Glass App Container */
+.app {
+  width: min(920px, 94vw);
+  padding: 42px 32px;
+  border-radius: var(--radius);
+  backdrop-filter: blur(28px) saturate(180%);
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: var(--shadow), var(--glow-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.app::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(from 0deg, var(--primary), var(--accent), #00bfff, var(--primary));
+  filter: blur(120px);
+  opacity: 0.25;
+  z-index: 0;
+  animation: rotateBg 4s linear infinite;
+}
+@keyframes rotateBg { to { transform: rotate(360deg); } }
+
+.app-inner { position: relative; z-index: 1; }
+
+/* Title */
+h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--accent), #a259ff 60%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 30px;
+}
+
+/* Input Bar */
+.controls {
+  display: flex;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  background: rgba(0,255,231,0.03);
+  border: 1px solid rgba(162,89,255,0.18);
+  transition: all 0.4s ease;
+}
+
+.controls:focus-within {
+  box-shadow: var(--glow-primary), var(--glow-accent);
+  transform: translateY(-2px);
+}
+
+input[type="text"]#input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: var(--text);
+  padding: 10px 0;
+}
+input::placeholder { color: rgba(143,161,199,0.85); }
+
+/* Neon Button */
+button#button {
+  border: none;
+  cursor: pointer;
+  padding: 12px 24px;
+  border-radius: calc(var(--radius) - 6px);
+  font-weight: 600;
+  font-size: 15px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--accent), #00bfff 90%);
+  box-shadow: 0 6px 24px rgba(162,89,255,0.55);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+button#button::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: conic-gradient(from 0deg, var(--primary), var(--accent), #00bfff, var(--primary));
+  filter: blur(600px);
+  animation: spin 4s linear infinite;
+  z-index: 0;
+}
+button#button span { position: relative; z-index: 1; }
+
+button#button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: var(--glow-primary), var(--glow-accent);
+}
+button#button:active { transform: translateY(0) scale(0.97); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Output Window */
+#output {
+  min-height: 160px;
+  max-height: 400px;       /* prevent infinite growth */
+  overflow-y: auto;        /* add vertical scroll inside output */
+  scrollbar-width:thin;
+  margin-top: 32px;
+  padding: 28px;
+  font-size: 16px;
+  line-height: 1.6;
+  border-radius: var(--radius);
+  background: rgba(0,255,231,0.04);
+  border: 1px solid rgba(162,89,255,0.18);
+  white-space: pre-wrap;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+#output:not(:empty) {
+  animation: fadeIn 0.5s ease-out;
+  border-color: rgba(162,89,255,0.45);
+  box-shadow: var(--glow-primary), var(--glow-accent);
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loading Spinner */
+#output.loading::after {
+  content: '';
+  width: 28px; height: 28px;
+  border: 3px solid var(--accent);
+  border-top: 3px solid #a259ff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 1s linear infinite;
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+  .controls { flex-direction: column; }
+  button#button { width: 100%; }
+}
