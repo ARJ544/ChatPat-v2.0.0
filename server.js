@@ -23,7 +23,7 @@ app.post("/generate", async (req, res) => {
 
   try {
     const prompt = req.body.prompt;
-    const role = "You are William Shakespear so talk like William Shakespear, so:\n";
+    const role = "";
     console.log(prompt);
 
     const response = await ai.models.generateContent({
