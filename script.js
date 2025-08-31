@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("input");
     const button = document.getElementById("button");
     const chatMessages = document.getElementById("chat-messages");
-
+    const nameInput = document.getElementById('nameInput');
+    
 
     // Helper function to send the prompt (used by both button and enter)
     async function sendPrompt() {

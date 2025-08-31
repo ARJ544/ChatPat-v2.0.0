@@ -492,3 +492,29 @@ html, body {
 #input {
   overflow: hidden;
 }
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+.hello-title {
+  font-size: 3rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin-bottom: 24px;
+  color: #0e906f;
+}
+.nameOfperson{
+  color: #1077a3;
+}
+
+@media (max-width: 600px) {
+  .hello-title {
+      font-size: 2rem;
+  }
+  .name-input {
+      font-size: 1.2rem;
+  }
+}
