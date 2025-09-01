@@ -60,12 +60,12 @@ html, body {
 
 /* User messages align right */
 .user-chat-container {
+  max-width: 60vw;
   align-self: flex-end;
   background: var(--user-msg-bubble);
   color: var(--text-primary);
   margin: 0;
   float: none; /* remove float */
-  max-width: 80%;
   padding: 10px 15px;
   word-wrap:break-word;
   text-wrap: wrap;
@@ -517,4 +517,23 @@ html, body {
   .name-input {
       font-size: 1.2rem;
   }
+}
+
+.message-content pre {
+    background: #1e1e1e;           /* dark background */
+    color: #dcdcdc;                /* light text */
+    padding: 12px;
+    border-radius: 6px;
+    max-width: 60%;
+    overflow-x: auto;              /* horizontal scroll if too wide */
+    white-space: pre;              /* keep code formatting */
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    scrollbar-width: thin;
+    max-width: 60vw;
+}
+
+.message-content code {
+    display: block;
+    white-space: pre;
 }
